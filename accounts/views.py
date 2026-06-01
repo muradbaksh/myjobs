@@ -29,8 +29,8 @@ class RegisterAPIView(APIView):
 
         serializer.is_valid(raise_exception=True)
 
-        serializer.save()
-
+        user = serializer.save()
+        login(request,user)
         return Response(
             {"message": "Registration successful"},
             status=201
