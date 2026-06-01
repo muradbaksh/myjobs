@@ -8,6 +8,7 @@ click-didyoumean
 click-plugins
 click-repl
 colorama
+openpyxl
 cron-descriptor
 cryptography
 crispy-bootstrap5
