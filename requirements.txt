@@ -62,3 +62,4 @@ urllib3
 vine
 wcwidth
 whitenoise
+gunicorn
