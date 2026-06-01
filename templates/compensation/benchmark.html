@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Salary Benchmark</h2>
+
+<div>
+
+<strong>
+
+Rule:
+
+</strong>
+
+Viewing benchmark
+costs 5 credits.
+
+</div>
+
+<hr>
+
+<form id="benchmarkSearch">
+
+<input type="text"
+name="position"
+placeholder="Position">
+
+<button type="submit">
+
+Search
+
+</button>
+
+</form>
+
+<hr>
+
+<div id="benchmarkResult"></div>
+
+<script src="/static/js/api.js"></script>
+<script src="/static/js/benchmark.js"></script>
+
+
+<style>
+
+/* =========================
+SALARY BENCHMARK PREMIUM UI
+========================= */
+
+h2{
+    text-align:center;
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:-0.8px;
+    margin-bottom:20px;
+}
+
+/* RULE BOX */
+div > strong{
+    color:var(--primary);
+    font-weight:800;
+}
+
+div{
+    text-align:center;
+    color:var(--text-soft);
+    font-size:15px;
+    line-height:1.6;
+}
+
+/* FORM WRAPPER */
+#benchmarkSearch{
+    max-width:520px;
+    margin:30px auto;
+    display:flex;
+    gap:12px;
+    padding:18px;
+
+    background:var(--glass);
+    border:1px solid var(--border);
+    border-radius:18px;
+
+    backdrop-filter:blur(20px);
+    box-shadow:0 15px 40px rgba(15,23,42,.06);
+}
+
+/* INPUT */
+#benchmarkSearch input{
+    flex:1;
+    padding:14px 16px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    font-size:15px;
+    background:#fff;
+    transition:.25s;
+}
+
+#benchmarkSearch input:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+}
+
+/* BUTTON */
+#benchmarkSearch button{
+    padding:14px 20px;
+    border-radius:14px;
+    border:none;
+    cursor:pointer;
+
+    background:linear-gradient(135deg,var(--primary),var(--primary-light));
+    color:#fff;
+    font-weight:700;
+
+    transition:.25s;
+}
+
+#benchmarkSearch button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 15px 30px rgba(37,99,235,.25);
+}
+
+/* RESULT BOX */
+#benchmarkResult{
+    max-width:900px;
+    margin:40px auto 0;
+    padding:20px;
+
+    background:rgba(255,255,255,.75);
+    border:1px solid var(--border);
+    border-radius:20px;
+
+    box-shadow:0 15px 40px rgba(15,23,42,.06);
+    backdrop-filter:blur(20px);
+
+    min-height:120px;
+}
+
+/* RESULT CARD (JS generated support) */
+.benchmark-card{
+    padding:18px;
+    border-radius:16px;
+    background:#fff;
+    border:1px solid var(--border);
+    margin-bottom:12px;
+
+    transition:.25s;
+}
+
+.benchmark-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(15,23,42,.10);
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+    #benchmarkSearch{
+        flex-direction:column;
+    }
+
+    #benchmarkSearch button{
+        width:100%;
+    }
+}
+
+
+</style>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Share Compensation</h2>
+
+    <form id="compensationForm">
+
+        <input type="number" name="company" placeholder="Company ID" required>
+
+        <input type="text" name="job_title" placeholder="Job Title" required>
+
+        <input type="text" name="department" placeholder="Department" required>
+
+        <select name="employment_type">
+            <option value="full_time">Full Time</option>
+            <option value="part_time">Part Time</option>
+            <option value="contract">Contract</option>
+            <option value="intern">Intern</option>
+        </select>
+
+        <select name="experience_level">
+            <option value="junior">Junior</option>
+            <option value="mid">Mid</option>
+            <option value="senior">Senior</option>
+            <option value="lead">Lead</option>
+        </select>
+
+        <input type="number" name="years_of_experience" placeholder="Years of Experience">
+
+        <input type="text" name="location" placeholder="Location">
+
+        <input type="number" name="base_salary" placeholder="Base Salary">
+
+        <input type="number" name="allowances" placeholder="Allowances">
+
+        <input type="number" name="bonus" placeholder="Bonus">
+
+        <input type="number" name="other_benefits" placeholder="Other Benefits">
+
+        <input type="number" name="market_fairness_rating" placeholder="Fairness (1-5)">
+
+        <button type="submit">Submit</button>
+
+    </form>
+
+</div>
+
+<script src="/static/js/api.js"></script>
+<script src="/static/js/compensation.js"></script>
+
+
+<style>
+
+
+/* Center container */
+.form-container {
+    width: 100%;
+    max-width: 650px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px 35px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Title */
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Form layout */
+#compensationForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Inputs & selects */
+#compensationForm input,
+#compensationForm select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dcdfe6;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+}
+
+/* Focus effect */
+#compensationForm input:focus,
+#compensationForm select:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* Button */
+#compensationForm button {
+    padding: 12px;
+    background: #4a90e2;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+/* Button hover */
+#compensationForm button:hover {
+    background: #357ab8;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .form-container {
+        margin: 20px;
+        padding: 20px;
+    }
+}
+</style>
+{% endblock %}

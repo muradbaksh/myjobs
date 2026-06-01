@@ -1,0 +1,63 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block admin_content %}
+
+<h2>Platform Analytics</h2>
+
+<section class="analytics-stats">
+
+    <div>
+
+        <h3 id="totalReviews">
+            0
+        </h3>
+
+        <p>Total Reviews</p>
+
+    </div>
+
+    <div>
+
+        <h3 id="totalCompensations">
+            0
+        </h3>
+
+        <p>Total Compensation Records</p>
+
+    </div>
+
+    <div>
+
+        <h3 id="averageReputation">
+            0
+        </h3>
+
+        <p>Average Reputation</p>
+
+    </div>
+
+</section>
+
+<section>
+
+    <canvas
+        id="reviewChart"
+        height="100">
+    </canvas>
+
+</section>
+
+<section>
+
+    <canvas
+        id="industryChart"
+        height="100">
+    </canvas>
+
+</section>
+
+<div id="analyticsContainer">
+
+</div>
+
+{% endblock %}

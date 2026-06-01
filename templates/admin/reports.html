@@ -1,0 +1,29 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block admin_content %}
+
+<h2>Audit Logs</h2>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>User</th>
+            <th>Action</th>
+            <th>Object</th>
+            <th>IP</th>
+            <th>Date</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody id="reportsContainer">
+
+    </tbody>
+
+</table>
+
+{% endblock %}

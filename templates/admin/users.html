@@ -1,0 +1,64 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block admin_content %}
+
+<section class="page-header">
+
+    <h2>User Management</h2>
+
+</section>
+
+<section class="toolbar">
+
+    <input
+        type="text"
+        id="userSearch"
+        placeholder="Search username..."
+    >
+
+    <select id="roleFilter">
+
+        <option value="">
+            All Roles
+        </option>
+
+        <option value="user">
+            User
+        </option>
+
+        <option value="moderator">
+            Moderator
+        </option>
+
+        <option value="admin">
+            Admin
+        </option>
+
+    </select>
+
+</section>
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Credits</th>
+            <th>Role</th>
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody id="usersContainer">
+
+    </tbody>
+
+</table>
+
+{% endblock %}

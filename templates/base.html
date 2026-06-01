@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    {% include 'partials/navbar.html' %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    {% include 'partials/messages.html' %}
+
+    {% include 'partials/credit_modal.html' %}
+
+    {% include 'partials/footer.html' %}
+
+
+
+    <script src="/static/js/messages.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/static/js/credits.js"></script>
+</body>
+</html>

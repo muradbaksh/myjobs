@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Company Overview Review</h2>
+
+<form id="reviewForm">
+
+    <input type="number"
+           name="company"
+           placeholder="Company ID">
+
+    <h4>Rate 1 - 10</h4>
+
+    <input type="number" name="brand_value" placeholder="Brand Value">
+
+    <input type="number" name="work_environment" placeholder="Work Environment">
+
+    <input type="number" name="career_growth" placeholder="Career Growth">
+
+    <input type="number" name="salary_satisfaction" placeholder="Salary Satisfaction">
+
+    <input type="number" name="benefits" placeholder="Benefits">
+
+    <input type="number" name="job_security" placeholder="Job Security">
+
+    <input type="number" name="management_quality" placeholder="Management Quality">
+
+    <input type="number" name="work_life_balance" placeholder="Work Life Balance">
+
+    <input type="number" name="employee_respect" placeholder="Employee Respect">
+
+    <label>
+
+        Recommend Company?
+
+        <select name="recommendation">
+
+            <option value="yes">
+                Yes
+            </option>
+
+            <option value="no">
+                No
+            </option>
+
+        </select>
+
+    </label>
+
+    <textarea
+        name="comment"
+        placeholder="Comment">
+    </textarea>
+
+    <button type="submit">
+
+        Submit Review
+
+    </button>
+
+</form>
+
+<script src="/static/js/api.js"></script>
+<script src="/static/js/reviews.js"></script>
+
+
+<style>
+
+/* ===== Page Title ===== */
+h2 {
+    text-align: center;
+    margin: 20px 0 25px;
+    font-size: 26px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* ===== Form Container ===== */
+#reviewForm {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Section heading */
+#reviewForm h4 {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+    border-left: 4px solid #4a90e2;
+    padding-left: 10px;
+}
+
+/* ===== Inputs ===== */
+#reviewForm input,
+#reviewForm select,
+#reviewForm textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dcdfe6;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+    background: #fff;
+}
+
+/* Focus */
+#reviewForm input:focus,
+#reviewForm select:focus,
+#reviewForm textarea:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+/* ===== Textarea ===== */
+#reviewForm textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* ===== Label ===== */
+#reviewForm label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ===== Button ===== */
+#reviewForm button {
+    margin-top: 10px;
+    padding: 12px;
+    background: #4a90e2;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#reviewForm button:hover {
+    background: #357ab8;
+    transform: translateY(-1px);
+}
+
+/* ===== Rating grid feel (optional upgrade) ===== */
+#reviewForm input[type="number"] {
+    background: #fafbfc;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    #reviewForm {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+}
+
+</style>
+{% endblock %}

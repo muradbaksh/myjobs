@@ -1,0 +1,72 @@
+<div id="toast-container"></div>
+
+
+
+
+<style>
+#toast-container{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:9999;
+}
+
+.toast{
+    min-width:300px;
+    padding:15px 20px;
+    margin-bottom:10px;
+    border-radius:8px;
+    color:white;
+    font-weight:600;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+    animation:slideIn .3s ease;
+}
+
+.toast-success{
+    background:#22c55e;
+}
+
+.toast-danger{
+    background:#ef4444;
+}
+
+.toast-warning{
+    background:#f59e0b;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(100%);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+</style>
+
+
+<script>
+function showToast(message, type = "success") {
+
+    const container =
+        document.getElementById(
+            "toast-container"
+        );
+
+    const toast =
+        document.createElement("div");
+
+    toast.className =
+        `toast toast-${type}`;
+
+    toast.innerText = message;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+</script>

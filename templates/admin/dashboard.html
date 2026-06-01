@@ -1,0 +1,366 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block admin_content %}
+
+<div class="admin-page">
+
+    <!-- Page Header -->
+    <div class="admin-header">
+
+        <div class="admin-header-left">
+
+            <h1>Admin Dashboard</h1>
+
+            <p>
+                Overview of platform activity, users, reports and system logs.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- KPI GRID -->
+    <section class="dashboard-stats">
+
+        <div class="stat-card">
+            <span class="stat-label">Total Users</span>
+            <h2 id="totalUsers">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-label">Total Companies</span>
+            <h2 id="totalCompanies">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-label">Total Reviews</span>
+            <h2 id="totalReviews">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <span class="stat-label">Pending Reports</span>
+            <h2 id="pendingReports">0</h2>
+        </div>
+
+    </section>
+
+
+    <!-- Content Grid -->
+    <section class="admin-grid">
+
+        <!-- Recent Reports -->
+        <div class="admin-card">
+
+            <div class="card-header">
+                <h3>Recent Reports</h3>
+                <p>Latest user submitted reports for moderation.</p>
+            </div>
+
+            <div id="recentReports" class="list-container">
+                <!-- JS renders here -->
+            </div>
+
+        </div>
+
+
+        <!-- Recent Audit Logs -->
+        <div class="admin-card">
+
+            <div class="card-header">
+                <h3>Recent Audit Logs</h3>
+                <p>System activity and admin actions history.</p>
+            </div>
+
+            <div id="recentAuditLogs" class="list-container">
+                <!-- JS renders here -->
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<style>
+
+
+    /* =========================
+ADMIN LAYOUT
+========================= */
+
+.admin-layout{
+    display:flex;
+    min-height:100vh;
+    background:linear-gradient(180deg,#f8fafc,#f1f5f9);
+}
+
+/* =========================
+SIDEBAR (STRIPE STYLE)
+========================= */
+
+.admin-sidebar{
+    width:260px;
+    position:sticky;
+    top:0;
+    height:100vh;
+
+    padding:18px 14px;
+
+    background:rgba(255,255,255,.7);
+    backdrop-filter:blur(22px);
+
+    border-right:1px solid var(--border);
+}
+
+.admin-sidebar a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:12px 14px;
+    margin-bottom:6px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+    color:var(--text-soft);
+    font-size:14px;
+    font-weight:500;
+
+    transition:.2s ease;
+}
+
+/* hover (very subtle like Stripe) */
+.admin-sidebar a:hover{
+    background:rgba(37,99,235,.06);
+    color:var(--primary);
+}
+
+/* ACTIVE STATE */
+.admin-sidebar a.active{
+    background:rgba(37,99,235,.10);
+    color:var(--primary);
+    font-weight:600;
+}
+
+/* notification badge */
+.badge{
+    font-size:11px;
+    padding:2px 8px;
+    border-radius:999px;
+    background:#ef4444;
+    color:white;
+}
+
+/* =========================
+MAIN CONTENT
+========================= */
+
+.admin-content{
+    flex:1;
+    padding:28px;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.admin-header h1{
+    font-size:26px;
+    font-weight:800;
+    letter-spacing:-0.5px;
+}
+
+.admin-header p{
+    color:var(--text-soft);
+    font-size:14px;
+    margin-top:4px;
+}
+
+/* =========================
+GLASS CARDS (STRIPE STYLE)
+========================= */
+
+.admin-card{
+    background:rgba(255,255,255,.75);
+    border:1px solid var(--border);
+    border-radius:16px;
+
+    padding:18px;
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
+}
+
+/* =========================
+KPI GRID (LINEAR STYLE)
+========================= */
+
+.dashboard-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-top:18px;
+}
+
+.stat-card{
+    background:rgba(255,255,255,.75);
+    border:1px solid var(--border);
+    border-radius:14px;
+
+    padding:16px;
+
+    backdrop-filter:blur(18px);
+}
+
+.stat-card h3{
+    font-size:22px;
+    font-weight:800;
+    color:var(--primary);
+}
+
+.stat-card p{
+    font-size:13px;
+    color:var(--text-soft);
+}
+
+/* =========================
+GRID LAYOUT
+========================= */
+
+.admin-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:18px;
+}
+
+/* =========================
+LISTS (REPORTS / LOGS)
+========================= */
+
+.list-container{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.list-item{
+    padding:12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.6);
+}
+
+/* timeline style logs */
+.timeline{
+    border-left:2px solid rgba(37,99,235,.2);
+    padding-left:14px;
+}
+
+.timeline-item{
+    margin-bottom:12px;
+    position:relative;
+}
+
+.timeline-item::before{
+    content:"";
+    width:8px;
+    height:8px;
+    background:var(--primary);
+    border-radius:50%;
+
+    position:absolute;
+    left:-18px;
+    top:6px;
+}
+
+/* =========================
+TABLES (LINEAR STYLE)
+========================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:rgba(255,255,255,.75);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+}
+
+th,td{
+    padding:12px;
+    font-size:14px;
+    text-align:left;
+}
+
+th{
+    background:rgba(15,23,42,.03);
+    font-weight:600;
+}
+
+tr{
+    border-bottom:1px solid var(--border);
+}
+
+tr:hover{
+    background:rgba(37,99,235,.04);
+}
+
+/* =========================
+BUTTONS (STRIPE FEEL)
+========================= */
+
+.btn{
+    padding:10px 14px;
+    border-radius:12px;
+    border:none;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s ease;
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-primary:hover{
+    background:var(--primary-dark);
+}
+
+.btn-secondary{
+    background:rgba(15,23,42,.06);
+    color:var(--text);
+}
+
+/* =========================
+RESPONSIVE (COLLAPSIBLE READY)
+========================= */
+
+@media(max-width:900px){
+
+    .admin-sidebar{
+        width:80px;
+    }
+
+    .admin-sidebar a{
+        justify-content:center;
+        font-size:0;
+    }
+
+    .dashboard-stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+
+</style>
+{% endblock %}

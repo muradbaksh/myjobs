@@ -1,0 +1,494 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="profile">
+
+    <!-- HEADER -->
+    <div class="profile-header">
+
+        <div class="profile-header-left">
+
+            <span class="profile-badge">
+                Account
+            </span>
+
+            <h1>
+                My Profile
+            </h1>
+
+            <p>
+                Manage your account information, credits and activity.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- OVERVIEW / KPI CARDS -->
+    <div class="profile-overview-grid">
+
+        <div class="profile-card kpi">
+
+            <span class="label">
+                Available Credits
+            </span>
+
+            <h2>
+                {{ request.user.credits }}
+            </h2>
+
+        </div>
+
+        <div class="profile-card kpi">
+
+            <span class="label">
+                Account Status
+            </span>
+
+            <h2>
+                Active
+            </h2>
+
+        </div>
+
+        <div class="profile-card kpi">
+
+            <span class="label">
+                Username
+            </span>
+
+            <h2>
+                {{ request.user.username }}
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- PROFILE DETAILS -->
+    <div class="profile-card section">
+
+        <div class="section-header">
+
+            <h3>
+                Account Information
+            </h3>
+
+            <p>
+                Personal identity and contact details
+            </p>
+
+        </div>
+
+        <div class="info-grid">
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    Full Name
+                </span>
+
+                <strong class="info-value">
+                    {{ request.user.full_name }}
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    Username
+                </span>
+
+                <strong class="info-value">
+                    {{ request.user.username }}
+                </strong>
+
+            </div>
+
+            <div class="info-item">
+
+                <span class="info-label">
+                    Email
+                </span>
+
+                <strong class="info-value">
+                    {{ request.user.email }}
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+ 
+
+</div>
+    <!-- WALLET SECTION -->
+    <div class="profile-card section">
+
+        <div class="section-header">
+
+            <h3>
+                Credit Wallet
+            </h3>
+
+            <p>
+                Earn and spend credits across platform actions
+            </p>
+
+        </div>
+
+        <div class="wallet-box">
+
+            <span class="wallet-label">
+                Current Balance
+            </span>
+
+            <h2 class="wallet-balance">
+                {{ request.user.credits }} Credits
+            </h2>
+
+        </div>
+
+        <div class="wallet-rules">
+
+            <div class="rule">
+
+                <span>
+                    Review Submission
+                </span>
+
+                <strong>
+                    +10 Credits
+                </strong>
+
+            </div>
+
+            <div class="rule">
+
+                <span>
+                    Compensation Submission
+                </span>
+
+                <strong>
+                    +5 Credits
+                </strong>
+
+            </div>
+
+            <div class="rule">
+
+                <span>
+                    Salary Benchmark View
+                </span>
+
+                <strong>
+                    -5 Credits
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+/* =========================
+PROFILE PAGE - PREMIUM SAAS UI
+Stripe / Linear inspired
+========================= */
+
+.profile{
+    max-width:1200px;
+    margin:auto;
+    padding:42px 22px 80px;
+    color:var(--text);
+}
+
+/* =========================
+HEADER
+========================= */
+
+.profile-header{
+    margin-bottom:32px;
+}
+
+.profile-badge{
+    display:inline-flex;
+    align-items:center;
+
+    padding:6px 12px;
+
+    font-size:12px;
+    font-weight:700;
+
+    border-radius:999px;
+
+    color:var(--primary);
+
+    background:rgba(37,99,235,.08);
+
+    border:1px solid rgba(37,99,235,.12);
+
+    margin-bottom:12px;
+}
+
+.profile-header h1{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:-1px;
+    margin-bottom:6px;
+}
+
+.profile-header p{
+    font-size:15px;
+    color:var(--text-soft);
+    margin:0;
+}
+
+/* =========================
+GRID SYSTEM
+========================= */
+
+.profile-overview-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    margin-bottom:22px;
+}
+
+/* =========================
+CARD BASE (GLOBAL STYLE)
+========================= */
+
+.profile-card{
+    background:rgba(255,255,255,.82);
+
+    border:1px solid rgba(15,23,42,.06);
+
+    border-radius:18px;
+
+    box-shadow:
+        0 1px 2px rgba(15,23,42,.04),
+        0 10px 25px rgba(15,23,42,.04);
+
+    overflow:hidden;
+
+    position:relative;
+}
+
+/* subtle watermark / glow */
+.profile-card::before{
+    content:"";
+
+    position:absolute;
+    width:160px;
+    height:160px;
+
+    right:-60px;
+    top:-60px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(37,99,235,.07),
+        transparent 70%
+    );
+
+    pointer-events:none;
+}
+
+/* =========================
+KPI CARD
+========================= */
+
+.profile-card.kpi{
+    padding:18px 20px;
+    min-height:110px;
+}
+
+.profile-card.kpi .label{
+    font-size:13px;
+    font-weight:600;
+    color:var(--text-soft);
+}
+
+.profile-card.kpi h2{
+    margin-top:10px;
+
+    font-size:28px;
+    font-weight:800;
+
+    color:var(--dark);
+}
+
+/* =========================
+SECTION CARD
+========================= */
+
+.profile-card.section{
+    padding:22px;
+    margin-bottom:18px;
+}
+
+/* =========================
+SECTION HEADER
+========================= */
+
+.section-header{
+    margin-bottom:18px;
+}
+
+.section-header h3{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.section-header p{
+    font-size:14px;
+    color:var(--text-soft);
+    margin:0;
+}
+
+/* =========================
+INFO GRID
+========================= */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.info-item{
+    padding:14px;
+
+    border:1px solid rgba(15,23,42,.06);
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.6);
+}
+
+.info-label{
+    display:block;
+
+    font-size:12px;
+    color:var(--text-soft);
+
+    margin-bottom:6px;
+}
+
+.info-value{
+    font-size:14px;
+    font-weight:600;
+    color:var(--dark);
+}
+
+/* =========================
+WALLET
+========================= */
+
+.wallet-box{
+    padding:18px;
+
+    border-radius:16px;
+
+    background:rgba(37,99,235,.06);
+
+    border:1px solid rgba(37,99,235,.12);
+
+    margin-bottom:16px;
+}
+
+.wallet-label{
+    font-size:12px;
+    font-weight:600;
+    color:var(--text-soft);
+}
+
+.wallet-balance{
+    margin-top:8px;
+
+    font-size:26px;
+    font-weight:800;
+
+    color:var(--primary);
+}
+
+/* =========================
+RULES
+========================= */
+
+.wallet-rules{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.rule{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:12px 14px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(15,23,42,.06);
+
+    background:rgba(255,255,255,.6);
+}
+
+.rule span{
+    font-size:13px;
+    color:var(--text);
+}
+
+.rule strong{
+    font-size:13px;
+    font-weight:700;
+    color:var(--primary);
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media (max-width:1024px){
+
+    .profile-overview-grid{
+        grid-template-columns:1fr;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media (max-width:768px){
+
+    .profile{
+        padding:28px 16px 60px;
+    }
+
+    .profile-header h1{
+        font-size:26px;
+    }
+
+    .profile-card.kpi h2{
+        font-size:24px;
+    }
+}
+
+</style>
+{% endblock %}

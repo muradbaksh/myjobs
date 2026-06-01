@@ -1,0 +1,39 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block admin_content %}
+
+<h2>Moderation Queue</h2>
+
+<section class="toolbar">
+
+    <select id="reportTypeFilter">
+
+        <option value="">
+            All Reports
+        </option>
+
+        <option value="spam">
+            Spam
+        </option>
+
+        <option value="fake">
+            Fake
+        </option>
+
+        <option value="abuse">
+            Abuse
+        </option>
+
+        <option value="misleading">
+            Misleading
+        </option>
+
+    </select>
+
+</section>
+
+<div id="moderationContainer">
+
+</div>
+
+{% endblock %}
