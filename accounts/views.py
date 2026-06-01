@@ -39,26 +39,15 @@ class RegisterAPIView(APIView):
 
 class LoginAPIView(APIView):
     permission_classes = [AllowAny]
+
     def post(self, request):
 
-        serializer = LoginSerializer(
-            data=request.data
-        )
-        if not serializer.is_valid():
-            print(serializer.errors)
-            return Response(
-                serializer.errors,
-                status=400
-            )
-
+        serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = authenticate(
-            username=request.data.get("username"),
-            password=request.data.get("password")
-        )
 
-        login(request, user)       
-        return Response( serializer.validated_data )
+        login(request, serializer.user)
+
+        return Response(serializer.validated_data)
 
 
 
